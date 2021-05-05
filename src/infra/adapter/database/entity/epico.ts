@@ -11,7 +11,7 @@ export default class EtiquetaEntity {
   @Column({ type: 'varchar' })
   nome: string;
 
-  @Column({ type: 'varchar' })
+  @Column({ type: 'varchar' } )
   descricao: string;
 
   @Column({ type: 'date' })
