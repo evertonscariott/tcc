@@ -1,6 +1,5 @@
 import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn,ManyToOne } from 'typeorm';
-
-import {projeto} from "./projeto";
+import ProjetoEntity from './projeto';
 
 @Entity({ name: 'epico' })
 export default class EtiquetaEntity {
@@ -20,7 +19,7 @@ export default class EtiquetaEntity {
   @Column({ type: 'date' })
   data_fim: Date;
 
-  @ManyToOne(() => projeto, projeto => projeto.id)
+  @ManyToOne(() => ProjetoEntity, projeto => projeto.id)
     id_projeto: number;
 
 
