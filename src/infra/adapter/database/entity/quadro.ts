@@ -13,8 +13,7 @@ export default class QuadroEntity {
   @Column({ type: 'varchar' } )
   situacao: string;
 
- @ManyToOne(() => ProjetoEntity, projeto => projeto.id)
+  @ManyToOne(() => ProjetoEntity, projeto => projeto.id)
     id_projeto: number;
-
 
 }
