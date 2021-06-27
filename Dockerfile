@@ -4,6 +4,7 @@ WORKDIR /app
 COPY . .
 COPY ./package.json ./
 RUN npm install && npm cache clean --force
+RUN if [ "$AUDIT_FIX" = "true" ]; then npm audit fix; fi;
 RUN npm run build
 
 FROM node:14.15.2-alpine

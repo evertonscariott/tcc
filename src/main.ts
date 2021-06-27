@@ -2,6 +2,8 @@ import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+require('dotenv').config();
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -13,9 +15,8 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, options);
 
   SwaggerModule.setup(`${process.env.BASEPATH}/docs`, app, document);
-  app.enableCors();
   app.setGlobalPrefix(process.env.BASEPATH);
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
-  await app.listen(process.env.API_PORT);
+  await app.listen(3000);
 }
 bootstrap();

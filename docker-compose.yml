@@ -6,9 +6,18 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: tcc-api
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    depends_on:
+      - db
     ports:
-      - '3000:3000'
+      - 3000:3000
       - 9229:9229
+    expose: 
+      - 3000
+      - 9229
     networks:
       - tcc-network
   db:
@@ -23,6 +32,8 @@ services:
       - tcc-pgdata:/var/lib/postgresql/data
     ports:
       - '5432:5432'
+    expose:
+      - 5432
     networks:
       - tcc-network
 

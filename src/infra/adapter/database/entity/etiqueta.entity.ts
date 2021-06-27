@@ -11,9 +11,8 @@ export default class EtiquetaEntity extends BaseEntity {
   @Column({ type: 'varchar', nullable: false })
   cor: string;
 
-  constructor(id: number, descricao: string, cor: string) {
+  constructor(descricao: string, cor: string) {
     super();
-    this.id = id;
     this.descricao = descricao;
     this.cor = cor;
   }

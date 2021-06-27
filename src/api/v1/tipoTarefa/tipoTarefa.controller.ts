@@ -6,29 +6,28 @@ import {
   Param,
   Post,
   Put,
-  Query,
   UseFilters,
-  ValidationPipe,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { HttpExceptionFilter } from 'src/infra/exceptions/http-exception.filter';
-import { EtiquetaService } from './etiqueta.service';
-import CreateEtiqueta from './infrastructure/request/createEtiqueta';
-import UpdateEtiqueta from './infrastructure/request/updateEtiqueta';
+import CreateTipoTarefa from './infrastructure/request/createTipoTarefa';
+
+import UpdateTipoTarefa from './infrastructure/request/updateTipoTarefa';
+import { TipoTarefaService } from './tipoTarefa.service';
 
 @Controller()
-@ApiTags('Etiqueta')
+@ApiTags('TipoTarefa')
 @UseFilters(new HttpExceptionFilter())
-export class EtiquetaController {
-  constructor(private readonly serivce: EtiquetaService) {}
+export class TipoTarefaController {
+  constructor(private readonly serivce: TipoTarefaService) {}
 
   @Get()
   async get() {
-    return this.serivce.getAllEtiquetas();
+    return this.serivce.getAllTiposTarefas();
   }
 
   @Post()
-  async create(@Body() body: CreateEtiqueta) {
+  async create(@Body() body: CreateTipoTarefa) {
     return this.serivce.createEtiquea(body);
   }
 
@@ -38,7 +37,7 @@ export class EtiquetaController {
   }
 
   @Put()
-  async update(@Body() etiquetaUpdate: UpdateEtiqueta) {
+  async update(@Body() etiquetaUpdate: UpdateTipoTarefa) {
     return this.serivce.updateEtiqueta(etiquetaUpdate);
   }
 }
