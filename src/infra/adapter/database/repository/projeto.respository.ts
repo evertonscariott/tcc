@@ -1,4 +1,7 @@
-import { NotFoundException } from '@nestjs/common';
+import {
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 import CreateProjeto from 'src/api/v1/projeto/infrastructure/request/createProjeto';
 import UpdateProjeto from 'src/api/v1/projeto/infrastructure/request/updateProjeto';
 import { EntityRepository, Repository } from 'typeorm';
@@ -6,6 +9,20 @@ import ProjetoEntity from '../entity/projeto.entity';
 
 @EntityRepository(ProjetoEntity)
 export class ProjetoRespository extends Repository<ProjetoEntity> {
+  findById(id: number) {
+    try {
+      const entity = this.findOne({
+        where: { id: id },
+      });
+      if (!entity) throw new NotFoundException();
+
+      return entity;
+    } catch (err) {
+      if (err.message === 'Not Found') throw new NotFoundException();
+
+      throw new InternalServerErrorException();
+    }
+  }
   async saveEntity(newItem: CreateProjeto): Promise<ProjetoEntity> {
     const newEntity = new ProjetoEntity(newItem.nome);
 

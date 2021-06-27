@@ -8,4 +8,4 @@ import { ProjetoService } from './projeto.service';
   providers: [ProjetoService],
   imports: [InfraModule],
 })
-export class EtiquetaModule {}
+export class ProjetoModule {}

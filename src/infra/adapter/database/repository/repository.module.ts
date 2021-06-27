@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { EpicoRespository } from './epico.respository';
 import { EtiquetaRespository } from './etiqueta.respository';
 import { ProjetoRespository } from './projeto.respository';
 import { TipoTarefaRespository } from './tipoTarefa.respository';
@@ -9,6 +10,7 @@ const listOfRepo = [
     EtiquetaRespository,
     TipoTarefaRespository,
     ProjetoRespository,
+    EpicoRespository,
   ]),
 ];
 

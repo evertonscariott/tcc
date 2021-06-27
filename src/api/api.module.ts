@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common';
 import { RouterModule, Routes } from 'nest-router';
+import { EpicoModule } from './v1/epico/epico.module';
 import { EtiquetaModule } from './v1/etiqueta/etiqueta.module';
+import { ProjetoModule } from './v1/projeto/projeto.module';
 import { TipoTarefaModule } from './v1/tipoTarefa/tipoTarefa.module';
 import { V1Module } from './v1/v1.module';
 
@@ -16,6 +18,14 @@ const routes: Routes = [
       {
         path: '/tipoTarefa',
         module: TipoTarefaModule,
+      },
+      {
+        path: '/projeto',
+        module: ProjetoModule,
+      },
+      {
+        path: '/epico',
+        module: EpicoModule,
       },
     ],
   },

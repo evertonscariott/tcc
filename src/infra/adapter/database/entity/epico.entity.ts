@@ -24,14 +24,10 @@ export default class EpicoEntity extends BaseEntity {
   @Column({ type: 'timestamptz' })
   dataFim: Date;
 
-  @Column({ type: 'integer', nullable: false })
-  idProjeto: number;
-
   @ManyToOne(() => ProjetoEntity, (projeto: ProjetoEntity) => projeto.epicos)
   projeto: ProjetoEntity;
 
   constructor(
-    id: number,
     nome: string,
     descricao: string,
     dataInicio: Date,
@@ -39,12 +35,10 @@ export default class EpicoEntity extends BaseEntity {
     projeto?: ProjetoEntity,
   ) {
     super();
-    this.id = id;
     this.nome = nome;
     this.descricao = descricao;
     this.dataInicio = dataInicio;
     this.dataFim = dataFim;
     this.projeto = projeto;
-    this.idProjeto = projeto?.id || null;
   }
 }
