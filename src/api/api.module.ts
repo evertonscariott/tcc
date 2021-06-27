@@ -3,6 +3,7 @@ import { RouterModule, Routes } from 'nest-router';
 import { EpicoModule } from './v1/epico/epico.module';
 import { EtiquetaModule } from './v1/etiqueta/etiqueta.module';
 import { ProjetoModule } from './v1/projeto/projeto.module';
+import { QuadroModule } from './v1/quadro/quadro.module';
 import { TipoTarefaModule } from './v1/tipoTarefa/tipoTarefa.module';
 import { V1Module } from './v1/v1.module';
 
@@ -26,6 +27,10 @@ const routes: Routes = [
       {
         path: '/epico',
         module: EpicoModule,
+      },
+      {
+        path: '/quadro',
+        module: QuadroModule,
       },
     ],
   },

@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { EpicoRespository } from './epico.respository';
 import { EtiquetaRespository } from './etiqueta.respository';
 import { ProjetoRespository } from './projeto.respository';
+import { QuadroRespository } from './quadro.respository';
 import { TipoTarefaRespository } from './tipoTarefa.respository';
 
 const listOfRepo = [
@@ -11,6 +12,7 @@ const listOfRepo = [
     TipoTarefaRespository,
     ProjetoRespository,
     EpicoRespository,
+    QuadroRespository,
   ]),
 ];
 

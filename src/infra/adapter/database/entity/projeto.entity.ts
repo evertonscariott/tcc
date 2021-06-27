@@ -18,6 +18,9 @@ export default class ProjetoEntity extends BaseEntity {
   @OneToMany(() => EpicoEntity, (item) => item.projeto)
   epicos: EpicoEntity[];
 
+  @OneToMany(() => EpicoEntity, (item) => item.projeto)
+  quadros: EpicoEntity[];
+
   constructor(nome: string) {
     super();
     this.nome = nome;
