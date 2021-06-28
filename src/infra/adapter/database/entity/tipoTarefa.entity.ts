@@ -1,4 +1,11 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import TarefaEntity from './tarefa.entity';
 
 @Entity({ name: 'tipoTarefa' })
 export default class TipoTarefaEntity extends BaseEntity {
@@ -7,6 +14,9 @@ export default class TipoTarefaEntity extends BaseEntity {
 
   @Column({ type: 'varchar', nullable: false })
   nome: string;
+
+  @OneToMany(() => TarefaEntity, (item) => item.tipoTarefa)
+  tarefas: TarefaEntity[];
 
   constructor(nome: string) {
     super();
