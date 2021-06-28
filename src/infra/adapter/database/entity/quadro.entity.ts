@@ -6,6 +6,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import HistoriaEntity from './historia.entity';
 import ListaEntity from './lista.entity';
 import ProjetoEntity from './projeto.entity';
 
@@ -25,6 +26,10 @@ export default class QuadroEntity extends BaseEntity {
 
   @OneToMany(() => ListaEntity, (item) => item.quadro)
   listas: ListaEntity[];
+
+  @OneToMany(() => HistoriaEntity, (item) => item.quadro)
+  historias: HistoriaEntity[];
+
 
   constructor(nome: string, situacao: string, projeto?: ProjetoEntity) {
     super();
