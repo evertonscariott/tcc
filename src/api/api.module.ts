@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { RouterModule, Routes } from 'nest-router';
 import { EpicoModule } from './v1/epico/epico.module';
 import { EtiquetaModule } from './v1/etiqueta/etiqueta.module';
+import { ListaModule } from './v1/lista/lista.module';
 import { ProjetoModule } from './v1/projeto/projeto.module';
 import { QuadroModule } from './v1/quadro/quadro.module';
 import { TipoTarefaModule } from './v1/tipoTarefa/tipoTarefa.module';
@@ -31,6 +32,10 @@ const routes: Routes = [
       {
         path: '/quadro',
         module: QuadroModule,
+      },
+      {
+        path: '/lista',
+        module: ListaModule,
       },
     ],
   },

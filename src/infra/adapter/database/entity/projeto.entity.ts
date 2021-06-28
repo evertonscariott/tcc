@@ -6,6 +6,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import EpicoEntity from './epico.entity';
+import QuadroEntity from './quadro.entity';
 
 @Entity({ name: 'projeto' })
 export default class ProjetoEntity extends BaseEntity {
@@ -18,8 +19,8 @@ export default class ProjetoEntity extends BaseEntity {
   @OneToMany(() => EpicoEntity, (item) => item.projeto)
   epicos: EpicoEntity[];
 
-  @OneToMany(() => EpicoEntity, (item) => item.projeto)
-  quadros: EpicoEntity[];
+  @OneToMany(() => QuadroEntity, (item) => item.projeto)
+  quadros: QuadroEntity[];
 
   constructor(nome: string) {
     super();

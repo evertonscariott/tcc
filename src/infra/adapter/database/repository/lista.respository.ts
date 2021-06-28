@@ -2,19 +2,21 @@ import {
   InternalServerErrorException,
   NotFoundException,
 } from '@nestjs/common';
-import CreateQuadro from 'src/api/v1/quadro/infrastructure/request/createQuadro';
-import UpdateQuadro from 'src/api/v1/quadro/infrastructure/request/updateQuadro';
+import CreateLista from 'src/api/v1/lista/infrastructure/request/createLista';
+import UpdateLista from 'src/api/v1/lista/infrastructure/request/updateLista';
+
 import { EntityRepository, Repository } from 'typeorm';
-import ProjetoEntity from '../entity/projeto.entity';
+import ListaEntity from '../entity/lista.entity';
+
 import QuadroEntity from '../entity/quadro.entity';
 
-@EntityRepository(QuadroEntity)
-export class QuadroRespository extends Repository<QuadroEntity> {
+@EntityRepository(ListaEntity)
+export class ListaRespository extends Repository<ListaEntity> {
   async saveEntity(
-    newItem: CreateQuadro,
-    projeto: ProjetoEntity,
-  ): Promise<QuadroEntity> {
-    const newEntity = new QuadroEntity(newItem.nome, newItem.situacao, projeto);
+    newItem: CreateLista,
+    quadro: QuadroEntity,
+  ): Promise<ListaEntity> {
+    const newEntity = new ListaEntity(newItem.nome, quadro);
 
     try {
       return await this.save(newEntity);
@@ -23,10 +25,10 @@ export class QuadroRespository extends Repository<QuadroEntity> {
     }
   }
 
-  async getAllEntities(): Promise<QuadroEntity[]> {
+  async getAllEntities(): Promise<ListaEntity[]> {
     try {
       const entity = await this.find({
-        relations: ['projeto'],
+        relations: ['quadro'],
       });
       if (!entity) throw new NotFoundException();
 
@@ -36,19 +38,19 @@ export class QuadroRespository extends Repository<QuadroEntity> {
     }
   }
 
-  async updateEntity(updateEntity: UpdateQuadro, projeto: ProjetoEntity) {
+  async updateEntity(updateEntity: UpdateLista, quadro: QuadroEntity) {
     const entity = await this.findOne(updateEntity.id);
     if (!entity) throw new NotFoundException();
 
     entity.nome = updateEntity.nome;
-    entity.situacao = updateEntity.situacao;
-    entity.projeto = projeto;
+    entity.quadro = quadro;
     try {
       return await entity.save();
     } catch (error) {
       console.log(error);
     }
   }
+
   findById(id: number) {
     try {
       const entity = this.findOne({

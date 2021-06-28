@@ -3,8 +3,10 @@ import {
   Column,
   Entity,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import ListaEntity from './lista.entity';
 import ProjetoEntity from './projeto.entity';
 
 @Entity({ name: 'quadro' })
@@ -20,6 +22,9 @@ export default class QuadroEntity extends BaseEntity {
 
   @ManyToOne(() => ProjetoEntity, (projeto: ProjetoEntity) => projeto.quadros)
   projeto: ProjetoEntity;
+
+  @OneToMany(() => ListaEntity, (item) => item.quadro)
+  listas: ListaEntity[];
 
   constructor(nome: string, situacao: string, projeto?: ProjetoEntity) {
     super();
