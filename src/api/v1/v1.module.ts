@@ -10,6 +10,7 @@ import { ProjetoModule } from './projeto/projeto.module';
 import { QuadroModule } from './quadro/quadro.module';
 import { TarefaModule } from './tarefa/tarefa.module';
 import { TipoTarefaModule } from './tipoTarefa/tipoTarefa.module';
+import { UsuarioModule } from './usuario/tarefa.module';
 
 export const routesV1: Routes = [
   {
@@ -44,6 +45,10 @@ export const routesV1: Routes = [
     path: '/tarefa',
     module: TarefaModule,
   },
+  {
+    path: '/usuario',
+    module: UsuarioModule,
+  },
 ];
 @Module({
   imports: [
@@ -56,6 +61,7 @@ export const routesV1: Routes = [
     ListaModule,
     HistoriaModule,
     TarefaModule,
+    UsuarioModule,
   ],
 })
 export class V1Module {}

@@ -8,6 +8,7 @@ import { ProjetoRespository } from './projeto.respository';
 import { QuadroRespository } from './quadro.respository';
 import { TarefaRespository } from './tarefa.respository';
 import { TipoTarefaRespository } from './tipoTarefa.respository';
+import { UsuarioRespository } from './usuario.respository';
 
 const listOfRepo = [
   TypeOrmModule.forFeature([
@@ -19,6 +20,7 @@ const listOfRepo = [
     ListaRespository,
     HistoriaRespository,
     TarefaRespository,
+    UsuarioRespository,
   ]),
 ];
 

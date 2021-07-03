@@ -1,4 +1,4 @@
-import { NotFoundException } from '@nestjs/common';
+import { InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import CreateTarefa from 'src/api/v1/tarefa/infrastructure/request/createTarefa';
 import UpdateTarefa from 'src/api/v1/tarefa/infrastructure/request/updateTarefa';
 
@@ -81,6 +81,21 @@ export class TarefaRespository extends Repository<TarefaEntity> {
       await entity.remove();
     } catch (error) {
       console.log(error);
+    }
+  }
+
+  findById(id: number) {
+    try {
+      const entity = this.findOne({
+        where: { id: id },
+      });
+      if (!entity) throw new NotFoundException();
+
+      return entity;
+    } catch (err) {
+      if (err.message === 'Not Found') throw new NotFoundException();
+
+      throw new InternalServerErrorException();
     }
   }
 }
