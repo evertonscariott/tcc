@@ -1,4 +1,7 @@
-import { NotFoundException } from '@nestjs/common';
+import {
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 import CreateTipoTarefa from 'src/api/v1/tipoTarefa/infrastructure/request/createTipoTarefa';
 import UpdateTipoTarefa from 'src/api/v1/tipoTarefa/infrastructure/request/updateTipoTarefa';
 import { EntityRepository, Repository } from 'typeorm';
@@ -6,6 +9,20 @@ import TipoTarefaEntity from '../entity/tipoTarefa.entity';
 
 @EntityRepository(TipoTarefaEntity)
 export class TipoTarefaRespository extends Repository<TipoTarefaEntity> {
+  async findById(id: number) {
+    try {
+      const entity = this.findOne({
+        where: { id: id },
+      });
+      if (!entity) throw new NotFoundException();
+
+      return entity;
+    } catch (err) {
+      if (err.message === 'Not Found') throw new NotFoundException();
+
+      throw new InternalServerErrorException();
+    }
+  }
   async saveEntity(newItem: CreateTipoTarefa): Promise<TipoTarefaEntity> {
     const newEntity = new TipoTarefaEntity(newItem.nome);
 

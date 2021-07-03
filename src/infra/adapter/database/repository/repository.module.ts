@@ -6,6 +6,7 @@ import { HistoriaRespository } from './historia.respository';
 import { ListaRespository } from './lista.respository';
 import { ProjetoRespository } from './projeto.respository';
 import { QuadroRespository } from './quadro.respository';
+import { TarefaRespository } from './tarefa.respository';
 import { TipoTarefaRespository } from './tipoTarefa.respository';
 
 const listOfRepo = [
@@ -17,6 +18,7 @@ const listOfRepo = [
     QuadroRespository,
     ListaRespository,
     HistoriaRespository,
+    TarefaRespository,
   ]),
 ];
 

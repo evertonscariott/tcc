@@ -1,4 +1,7 @@
-import { NotFoundException } from '@nestjs/common';
+import {
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 import CreateHistoria from 'src/api/v1/historia/infrastructure/request/createHistoria';
 import UpdateHistoria from 'src/api/v1/historia/infrastructure/request/updateHistoria';
 
@@ -63,6 +66,21 @@ export class HistoriaRespository extends Repository<HistoriaEntity> {
       await entity.remove();
     } catch (error) {
       console.log(error);
+    }
+  }
+
+  findById(id: number) {
+    try {
+      const entity = this.findOne({
+        where: { id: id },
+      });
+      if (!entity) throw new NotFoundException();
+
+      return entity;
+    } catch (err) {
+      if (err.message === 'Not Found') throw new NotFoundException();
+
+      throw new InternalServerErrorException();
     }
   }
 }

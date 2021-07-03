@@ -44,7 +44,7 @@ export default class TarefaEntity extends BaseEntity {
   )
   historia: HistoriaEntity;
 
-  @ManyToMany(() => EtiquetaEntity)
+  @ManyToMany(() => EtiquetaEntity, { cascade: true })
   @JoinTable()
   etiquetas: EtiquetaEntity[];
 
@@ -56,6 +56,7 @@ export default class TarefaEntity extends BaseEntity {
     tipoTarefa: TipoTarefaEntity,
     lista: ListaEntity,
     historia: HistoriaEntity,
+    etiquetas: EtiquetaEntity[],
   ) {
     super();
     this.nome = nome;
@@ -65,5 +66,6 @@ export default class TarefaEntity extends BaseEntity {
     this.tipoTarefa = tipoTarefa;
     this.lista = lista;
     this.historia = historia;
+    this.etiquetas = etiquetas;
   }
 }
